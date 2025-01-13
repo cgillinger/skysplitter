@@ -1,0 +1,18 @@
+{
+  "name": "skysplitter",
+  "version": "1.0.0",
+  "description": "Split and post long text to Bluesky",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"
+  },
+  "dependencies": {
+    "@atproto/api": "latest",
+    "express": "^4.18.2",
+    "compression": "^1.7.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}
