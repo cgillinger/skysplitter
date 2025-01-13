@@ -11,14 +11,24 @@ const app = express();
 // Enable compression for all responses
 app.use(compression());
 
-// Serve static files from the client directory
+// Calculate correct paths
+const projectRoot = path.join(__dirname, '..');  // Go up one level from src
+const publicPath = path.join(projectRoot, 'public');
+console.log('Current directory:', __dirname);
+console.log('Project root:', projectRoot);
+console.log('Public path:', publicPath);
+
+// Serve static files from public directory first
+app.use(express.static(publicPath));
+
+// Additional specific routes
 app.use('/client', express.static(path.join(__dirname, 'client')));
 app.use('/api', express.static(path.join(__dirname, 'api')));
 app.use(express.json());
 
 // Basic error handling middleware
 app.use((err, req, res, next) => {
-    console.error(err.stack);
+    console.error('Error:', err.stack);
     res.status(500).send('Something broke!');
 });
 
@@ -38,6 +48,7 @@ const server = app.listen(PORT, () => {
     🚀 Skysplitter is running!
     🌐 Server listening on port ${PORT}
     📝 Access the application at http://localhost:${PORT}
+    📂 Serving static files from: ${publicPath}
     `);
 });
 

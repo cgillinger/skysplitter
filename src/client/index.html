@@ -9,73 +9,95 @@
 </head>
 <body class="bg-gray-100 min-h-screen">
     <div class="container mx-auto px-4 py-8 max-w-4xl">
-        <h1 class="text-3xl font-bold mb-8 text-center">Skysplitter</h1>
+        <!-- Modern Header with Enhanced Logo -->
+        <div class="flex justify-center items-center mb-12">
+            <div class="logo-container header-content">
+                <img 
+                    src="/images/Bluesky_Logo.png" 
+                    alt="Bluesky Logo" 
+                    class="logo-image animate-fade-in"
+                    onerror="this.onerror=null; this.src='/icons/Bluesky_Logo.svg';"
+                >
+                <h1 class="text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-400">Skysplitter</h1>
+            </div>
+        </div>
         
-        <!-- App Password Instructions -->
-        <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-8">
-            <div class="flex">
-                <div class="flex-shrink-0">
-                    <svg class="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
-                    </svg>
-                </div>
-                <div class="ml-3">
-                    <h3 class="text-sm font-medium text-yellow-800">Important: Use App Password</h3>
-                    <div class="mt-2 text-sm text-yellow-700">
-                        <p>For security reasons, please use an App Password instead of your main password:</p>
-                        <ol class="list-decimal ml-4 mt-2">
-                            <li>Go to <a href="https://bsky.app/settings/app-passwords" target="_blank" class="text-blue-600 hover:underline">Bluesky App Passwords</a></li>
-                            <li>Click "Add App Password"</li>
-                            <li>Name it "Skysplitter"</li>
-                            <li>Use the generated password below</li>
-                            <li>Delete the App Password when you're done</li>
-                        </ol>
+        <!-- Login View -->
+        <div id="loginView">
+            <!-- App Password Instructions -->
+            <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-8">
+                <div class="flex">
+                    <div class="flex-shrink-0">
+                        <svg class="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <div class="ml-3">
+                        <h3 class="text-sm font-medium text-yellow-800">Important: Use App Password</h3>
+                        <div class="mt-2 text-sm text-yellow-700">
+                            <p>For security reasons, please use an App Password instead of your main password:</p>
+                            <ol class="list-decimal ml-4 mt-2">
+                                <li>Go to <a href="https://bsky.app/settings/app-passwords" target="_blank" class="text-blue-600 hover:underline">Bluesky App Passwords</a></li>
+                                <li>Click "Add App Password"</li>
+                                <li>Name it "Skysplitter"</li>
+                                <li>Use the generated password below</li>
+                                <li>Delete the App Password when you're no longer using Skysplitter</li>
+                            </ol>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Login Form -->
-        <div id="loginForm" class="bg-white p-6 rounded-lg shadow-md mb-8">
-            <h2 class="text-xl font-semibold mb-4">Login with Bluesky</h2>
-            <form id="auth-form" class="space-y-4">
-                <div>
-                    <label class="block text-sm font-medium text-gray-700">Username</label>
-                    <input type="text" id="username" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" required>
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700">App Password</label>
-                    <input type="password" id="appPassword" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" required>
-                </div>
-                <button type="submit" class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
-                    Login
-                </button>
-            </form>
-        </div>
-
-        <!-- Text Input Area -->
-        <div id="textInput" class="hidden bg-white p-6 rounded-lg shadow-md">
-            <textarea id="content" class="w-full h-64 p-4 border rounded-md resize-none" placeholder="Enter your text here..."></textarea>
-            
-            <!-- Link Handling -->
-            <div id="linkSection" class="mt-4 hidden">
-                <h3 class="font-semibold mb-2">Detected Links</h3>
-                <div id="linkList" class="space-y-2"></div>
-            </div>
-
-            <!-- Character Count -->
-            <div class="flex justify-between items-center mt-4">
-                <span id="charCount" class="text-sm text-gray-600">0 characters</span>
-                <button id="splitButton" class="bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700">
-                    Split & Post
-                </button>
+            <!-- Login Form -->
+            <div id="loginForm" class="bg-white p-6 rounded-lg shadow-md mb-8">
+                <h2 class="text-xl font-semibold mb-4">Login with Bluesky</h2>
+                <form id="auth-form" class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Username</label>
+                        <input type="text" id="username" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" required>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">App Password</label>
+                        <input type="password" id="appPassword" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" required>
+                    </div>
+                    <button type="submit" class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                        Login
+                    </button>
+                </form>
             </div>
         </div>
 
-        <!-- Preview Area -->
-        <div id="previewArea" class="hidden mt-8 bg-white p-6 rounded-lg shadow-md">
-            <h2 class="text-xl font-semibold mb-4">Preview</h2>
-            <div id="postPreviews" class="space-y-4"></div>
+        <!-- Main App View (Initially Hidden) -->
+        <div id="appView" class="hidden">
+            <!-- Text Input Area -->
+            <div id="textInput" class="bg-white p-6 rounded-lg shadow-md">
+                <textarea id="content" class="w-full h-64 p-4 border rounded-md resize-none" placeholder="Enter your text here..."></textarea>
+                
+                <!-- Link Handling -->
+                <div id="linkSection" class="mt-4 hidden">
+                    <h3 class="font-semibold mb-2">Detected Links</h3>
+                    <div id="linkList" class="space-y-2"></div>
+                </div>
+
+                <!-- Character Count -->
+                <div class="flex justify-between items-center mt-4">
+                    <span id="charCount" class="text-sm text-gray-600">0 characters</span>
+                    <button id="splitButton" class="bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700">
+                        Split
+                    </button>
+                </div>
+            </div>
+
+            <!-- Preview Area -->
+            <div id="previewArea" class="hidden mt-8 bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-xl font-semibold mb-4">Preview</h2>
+                <div id="postPreviews" class="space-y-4"></div>
+                <div class="mt-6 flex justify-end">
+                    <button id="postButton" class="bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700">
+                        Post Thread
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
 
