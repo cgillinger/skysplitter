@@ -2,6 +2,8 @@
 
 Skysplitter is a web application that helps you split long texts into multiple posts for Bluesky, maintaining proper threading and handling links intelligently. It features a clean, modern interface and session persistence for convenience.
 
+> This is a personal hobby project I build for my own use and publish in case it's useful to someone else. I work on it in my spare time, so issues and PRs are welcome but replies may be slow. Use at your own risk.
+
 ## Features
 
 - Split long text into properly threaded Bluesky posts
